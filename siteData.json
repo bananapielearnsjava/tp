@@ -63,7 +63,9 @@
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
         "deleting-a-person": "Deleting a person",
-        "saving-data": "Saving data"
+        "saving-data": "Saving data",
+        "non-functional-requirements-2": "Non-Functional Requirements",
+        "glossary-2": "Glossary"
       },
       "headingKeywords": {}
     },
