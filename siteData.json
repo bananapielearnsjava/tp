@@ -7,11 +7,8 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
-        "john-doe": "John Doe",
-        "jane-doe": "Jane Doe",
-        "johnny-doe": "Johnny Doe",
-        "jean-doe": "Jean Doe",
-        "james-doe": "James Doe"
+        "yen-chong-wenjie": "Yen Chong Wenjie",
+        "ivan-lau": "Ivan Lau"
       },
       "headingKeywords": {}
     },
@@ -136,10 +133,17 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
+      "src": "team/soywater.md",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-healthnote": "Project: HealthNote"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/yenchongwenjie.md",
+      "title": "Yen Chong Wenjie's Project Portfolio Page",
+      "headings": {
+        "project-healthnote": "Project: HealthNote"
       },
       "headingKeywords": {}
     }
