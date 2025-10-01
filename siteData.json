@@ -8,7 +8,8 @@
         "about-us": "About Us",
         "project-team": "Project team",
         "yen-chong-wenjie": "Yen Chong Wenjie",
-        "ivan-lau": "Ivan Lau"
+        "ivan-lau": "Ivan Lau",
+        "jia-yang-soo42": "Jia Yang (soo42)"
       },
       "headingKeywords": {}
     },
@@ -129,6 +130,14 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/soo42.md",
+      "title": "JiaYang's Portfolio Page",
+      "headings": {
+        "project-healthnote": "Project: HealthNote"
       },
       "headingKeywords": {}
     },
