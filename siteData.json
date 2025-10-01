@@ -8,7 +8,9 @@
         "about-us": "About Us",
         "project-team": "Project team",
         "yen-chong-wenjie": "Yen Chong Wenjie",
+        "camlin": "Camlin",
         "ivan-lau": "Ivan Lau",
+        "lew-si-yu": "Lew Si Yu",
         "jia-yang-soo42": "Jia Yang (soo42)"
       },
       "headingKeywords": {}
@@ -130,6 +132,22 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/bananapielearnsjava.md",
+      "title": "Lew Si Yu's HealthNote Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/camlin-tan.md",
+      "title": "Camlin's Project Portfolio Page",
+      "headings": {
+        "project-healthnote-level-3": "Project: HealthNote Level 3"
       },
       "headingKeywords": {}
     },
