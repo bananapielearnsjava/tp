@@ -17,6 +17,7 @@ Class Person
 Class Address
 Class EmergencyContact
 Class Email
+Class IdentityNumber
 Class Name
 Class Phone
 Class Tag
@@ -27,6 +28,10 @@ Class Medicine
 Class AlcoholicRecord
 Class SmokingRecord
 Class PastDiagnoses
+Class UniqueAppointmentList
+Class Appointment
+Class AppointmentTime
+Class AppointmentNotes
 
 Class I #FFFFFF
 }
@@ -44,8 +49,11 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueAppointmentList
 UniquePersonList --> "~* all" Person
+UniqueAppointmentList --> "~* all" Appointment
 Person *--> Name
+Person *--> IdentityNumber
 Person *--> Phone
 Person *--> Email
 Person *--> Address
@@ -59,6 +67,9 @@ Person *--> AlcoholicRecord
 Person *--> SmokingRecord
 Person *--> PastDiagnoses
 
+Appointment *--> AppointmentTime
+Appointment *--> AppointmentNotes
+Appointment *--> IdentityNumber
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
@@ -67,4 +78,5 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Appointment
 @enduml
