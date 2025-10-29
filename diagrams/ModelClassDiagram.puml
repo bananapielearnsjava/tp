@@ -27,7 +27,7 @@ Class Allergy
 Class Medicine
 Class AlcoholicRecord
 Class SmokingRecord
-Class PastDiagnoses
+Class PastMedicalHistory
 Class UniqueAppointmentList
 Class Appointment
 Class AppointmentTime
@@ -65,7 +65,7 @@ Person *--> "*" Medicine
 Person *--> "*" Allergy
 Person *--> AlcoholicRecord
 Person *--> SmokingRecord
-Person *--> PastDiagnoses
+Person *--> PastMedicalHistory
 
 Appointment *--> AppointmentTime
 Appointment *--> AppointmentNotes

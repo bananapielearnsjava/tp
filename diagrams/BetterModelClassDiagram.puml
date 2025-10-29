@@ -19,5 +19,5 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> EmergencyContact
-Person *--> PastDiagnoses
+Person *--> PastMedicalHistory
 @enduml
