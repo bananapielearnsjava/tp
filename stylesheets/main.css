@@ -62,6 +62,13 @@ mark {
   -webkit-transition: 0.4s;
 }
 
+#content-wrapper h1,
+#content-wrapper h2,
+#content-wrapper h3,
+#content-wrapper h4 {
+    margin-top: 50px;
+}
+
 #site-nav,
 #page-nav {
   display: flex;
