@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+Package UI as UIPackage <<Rectangle>> UI_COLOR_T1 {
+
+object MainWindow UI_COLOR
+object PersonListPanel UI_COLOR
+object PersonViewPanel UI_COLOR
+object AppointmentListPanel UI_COLOR
+
+MainWindow *--> PersonListPanel
+MainWindow *--> PersonViewPanel
+MainWindow *--> AppointmentListPanel
+}
+
+Package Model as ModelPackage <<Rectangle>> MODEL_COLOR_T1 {
+object AddressBook MODEL_COLOR
+object UniqueAppointmentList MODEL_COLOR
+object UniquePersonList MODEL_COLOR
+object SortedAllUpcomingAppointments MODEL_COLOR
+object SortedAllPastAppointments MODEL_COLOR
+object SortedViewedPersonUpcomingAppointments MODEL_COLOR
+object SortedViewedPersonPastAppointments MODEL_COLOR
+object FilteredPersonList MODEL_COLOR
+
+AddressBook *-up-> UniqueAppointmentList
+AddressBook *-up-> UniquePersonList
+SortedAllUpcomingAppointments -down-> UniqueAppointmentList
+SortedAllPastAppointments -down-> UniqueAppointmentList
+SortedViewedPersonUpcomingAppointments -down-> UniqueAppointmentList
+SortedViewedPersonPastAppointments -down-> UniqueAppointmentList
+FilteredPersonList -down-> UniquePersonList
+
+}
+
+PersonListPanel --> FilteredPersonList : "Observes"
+PersonViewPanel --> SortedViewedPersonPastAppointments : "Observes"
+PersonViewPanel --> SortedViewedPersonUpcomingAppointments : "Observes"
+AppointmentListPanel --> SortedAllUpcomingAppointments : "Observes"
+AppointmentListPanel --> SortedAllPastAppointments : "Observes"
+@enduml

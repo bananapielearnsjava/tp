@@ -6,7 +6,6 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Class "<<interface>>\nUi" as Ui
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
@@ -15,6 +14,9 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class AppointmentListPanel
+Class AppointmentCard
+Class PersonViewPanel
 }
 
 package Model <<Rectangle>> {
@@ -25,36 +27,34 @@ package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
 
+Class I #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .up.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
+MainWindow *-up->  "1" CommandBox
+MainWindow *-up-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow *-up-> "1" StatusBarFooter
+MainWindow -left-> "0..1" HelpWindow
+MainWindow *-down-> "1" PersonViewPanel
+MainWindow *-down-> "1" AppointmentListPanel
 
 PersonListPanel -down-> "*" PersonCard
-
-MainWindow -left-|> UiPart
-
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+AppointmentListPanel -down-> "*" AppointmentCard
 
 PersonCard ..> Model
+PersonViewPanel ..> Model
+AppointmentCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+HelpWindow -[hidden]up-> StatusBarFooter
+HelpWindow -[hidden]left-> I
 
-MainWindow -[hidden]-|> UiPart
 @enduml

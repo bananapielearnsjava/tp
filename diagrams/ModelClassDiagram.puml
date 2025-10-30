@@ -14,24 +14,14 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class EmergencyContact
-Class Email
+
+Class PersonXYZProperties
 Class IdentityNumber
-Class Name
-Class Phone
-Class Tag
-Class BloodType
-Class Gender
-Class Allergy
-Class Medicine
-Class AlcoholicRecord
-Class SmokingRecord
-Class PastMedicalHistory
+
 Class UniqueAppointmentList
 Class Appointment
-Class AppointmentTime
-Class AppointmentNotes
+
+Class AppointmentXYZProperties
 
 Class I #FFFFFF
 }
@@ -50,33 +40,25 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueAppointmentList
-UniquePersonList --> "~* all" Person
-UniqueAppointmentList --> "~* all" Appointment
-Person *--> Name
-Person *--> IdentityNumber
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> EmergencyContact
-Person *--> "*" Tag
-Person *--> BloodType
-Person *--> Gender
-Person *--> "*" Medicine
-Person *--> "*" Allergy
-Person *--> AlcoholicRecord
-Person *--> SmokingRecord
-Person *--> PastMedicalHistory
+UniquePersonList -down-> "~* all" Person
+UniqueAppointmentList -down-> "~* all" Appointment
+Person *--> "1" IdentityNumber
+Person *--> "all" PersonXYZProperties
 
-Appointment *--> AppointmentTime
-Appointment *--> AppointmentNotes
-Appointment *--> IdentityNumber
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Appointment *--> "1" IdentityNumber
+Appointment *--> "all" AppointmentXYZProperties
 
 ModelManager --> "~* filtered" Person
-ModelManager --> "~* filtered" Appointment
+ModelManager --> "~* filtered and sorted" Appointment
+
+
+Person -[hidden]down--> I
+UniquePersonList -[hidden]right-> I
+Appointment -[hidden]down--> I
+Appointment -[hidden]left--> Person
+
+PersonXYZProperties -[hidden]right-> IdentityNumber
+AppointmentXYZProperties -[hidden]left-> IdentityNumber
+
+
 @enduml
