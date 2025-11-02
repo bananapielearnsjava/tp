@@ -610,22 +610,22 @@ testers are expected to do more *exploratory* testing.
 
 2. Adding a person with optional fields
 
-    1. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
+    1. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 t\priorityHigh`<br>
        Expected: New contact with tags is added to the list.
 
-    2. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
+    2. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 al\nuts`<br>
        Expected: New contact with allergies is added to the list.
 
-    3. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
+    3. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 m\100mg Panadol/day`<br>
        Expected: New contact with medicines is added to the list.
 
-    4. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
+    4. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 ar\Social drinker`<br>
        Expected: New contact with alcoholic record is added to the list.
 
-    5. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
+    5. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 sr\Heavy smoker`<br>
        Expected: New contact with smoking record is added to the list.
 
-    6. Test case: `Example: add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
+    6. Test case: `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567 b\AB g\M dob\01-01-2000 pmh\Diabetes`<br>
        Expected: New contact with past medical history is added to the list.
 
 ### Editing a person
@@ -640,19 +640,13 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit 1 id\A9999999Z`<br>
        Expected: Identity number of first contact is updated if no duplicate exists.
 
-    4. Test case: `edit 1 e\newemail@example.com addr\New Address 123`<br>
-       Expected: Email and address of first contact are updated.
+    4. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
+       Expected: Allergies are all replaced with new list.
 
-    5. Test case: `edit 1 t\diabetes`<br>
-       Expected: Tags are replaced with only "diabetes" tag.
-
-    6. Test case: `edit 1 al\Aspirin al\Ibuprofen`<br>
-       Expected: Allergies are replaced with new list.
-
-    7. Test case: `edit 0 p\91234567`<br>
+    5. Test case: `edit 0 p\91234567`<br>
        Expected: No person is edited. Error details shown in the status message.
 
-    8. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
+    6. Other incorrect edit commands to try: `edit`, `edit x p\12345678` (where x is larger than the list size)<br>
        Expected: No person is edited. Error details shown in the status message.
 
 ### Deleting a person
@@ -691,17 +685,6 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `view x` (where x is larger than the list size)<br>
        Expected: Error message shown.
 
-    5. Other incorrect view commands to try: `view`, `view abc`<br>
-       Expected: Error message shown.
-
-2. Switching between different person views
-
-    1. Test case: `view 1` followed by `view 2`<br>
-       Expected: View switches from first person to second person.
-
-    2. Test case: `view 1` followed by `list` followed by `view 1`<br>
-       Expected: View persists correctly after list command.
-
 ### Listing all persons
 
 1. Listing all persons in the address book
@@ -711,9 +694,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case after a `find` command: `list`<br>
        Expected: Resets the view to show all persons instead of filtered results.
-
-    3. Test case: `list xhasdnkcsdf` (garbage value after list command)<br>
-       Expected:  All persons in the address book are displayed with a note says "Additional arguments detected. You may provide extra arguments, but they will be ignored.".
 
 ### Finding a person
 
