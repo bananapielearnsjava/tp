@@ -127,9 +127,9 @@
         "features": "Features",
         "command-format": "Command Format",
         "features-general-features": "Features - General Features",
-        "viewing-help-help": "Viewing help: help",
+        "viewing-help-help": "Viewing help : help",
         "changing-the-colour-theme-theme": "Changing the colour theme: theme",
-        "exiting-the-program-exit": "Exiting the program: exit",
+        "exiting-the-program-exit": "Exiting the program : exit",
         "features-managing-patient-records": "Features - Managing Patient Records",
         "adding-a-patient-add": "Adding a patient: add",
         "editing-a-patient-edit": "Editing a patient: edit",
@@ -142,7 +142,7 @@
         "scheduling-an-appointment-schedule": "Scheduling an appointment: schedule",
         "deleting-upcoming-appointment-unschedule": "Deleting upcoming appointment: unschedule",
         "delete-past-appointment-forget": "Delete past appointment: forget",
-        "features-clearing-data": "Features - Clearing Data",
+        "feature-clearing-data": "Feature - Clearing Data",
         "clearing-all-entries-clear": "Clearing all entries: clear",
         "features-data-management": "Features - Data Management",
         "saving-the-data": "Saving the data",
@@ -154,7 +154,7 @@
         "glossary": "Glossary",
         "known-issues": "Known issues",
         "command-summary": "Command Summary",
-        "input-constraints-table": "Input Constraints Table"
+        "input-constraints-table-4": "Input Constraints Table"
       },
       "headingKeywords": {}
     },
