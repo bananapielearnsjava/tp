@@ -556,8 +556,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The product should be for a single user.
+5.  The product should be packaged into a **single `.jar` file** for ease of execution.
+6.  The product file size should remain **below 100 MB** to ensure efficient storage and distribution.
+7.  The GUI should display correctly and without layout issues on **standard screen resolutions** (1920×1080 and higher) at **100% and 125%** scale.
+8.  The GUI should remain usable (i.e., all functions accessible even if layout is suboptimal) at **1280×720** resolution and **150%** scale.
+9.  A doctor with basic technical knowledge should be able to learn all commands within 30 minutes of using the application.
+10. All patient data must be saved automatically and reliably to prevent data loss in case of unexpected application closure.
+11. All patient data must be stored **locally** on the user’s computer and never transmitted over the internet.
+12. The application should function **offline** without needing an internet connection.
+13. The system should include **JUnit tests** covering at least **70%** of the codebase to ensure long-term maintainability and prevent regressions.
 
 ### Glossary
 
@@ -835,17 +843,3 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
-
-## Non-Functional Requirements
-
-1. Should work on any *mainstream OS* as long as it has Java `17` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above-average typing speed for regular English text (i.e., not code, not system admin commands) should be able to accomplish most tasks faster using commands than using the mouse.
-
-*{More to be added}*
-
-
-## Glossary
-
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Private contact detail**: A contact detail that is not meant to be shared with others
