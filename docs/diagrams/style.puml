@@ -48,6 +48,15 @@ skinparam Class {
     FontName Arial
 }
 
+skinparam Object {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
 skinparam Actor {
     BorderColor USER_COLOR
     Color USER_COLOR
