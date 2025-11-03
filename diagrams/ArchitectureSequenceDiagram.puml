@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam ArrowFontStyle plain
+title Architecture Interactions Diagram
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
@@ -31,9 +32,9 @@ deactivate storage
 storage --[STORAGE_COLOR]> logic
 deactivate storage
 
-logic --[LOGIC_COLOR]> ui
+logic --[LOGIC_COLOR]> ui : CommandResult(successMessage)
 deactivate logic
 
-ui--[UI_COLOR]> user
+ui--[UI_COLOR]> user : Display CommandResult
 deactivate ui
 @enduml

@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Package Model as ModelPackage <<Rectangle>>{
+
+Class IdentityNumber
+
+Class Person #806600
+Class Address
+Class AlcoholicRecord
+Class Allergy
+Class BloodType
+Class DateOfBirth
+Class Email
+Class EmergencyContact
+Class Gender
+Class Medicine
+Class Name
+Class PastMedicalHistory
+Class Phone
+Class SmokingRecord
+Class Tag
+
+Person -left-> "1" Address
+Person -left-> "1" AlcoholicRecord
+Person -right-> "*" Allergy
+Person -left-> "1" BloodType
+Person -down-> "1" DateOfBirth
+Person -left-> "1" Email
+Person -down-> "1" EmergencyContact
+Person -down-> "1" Gender
+Person -right-> "*" Medicine
+Person -down-> "1" Name
+Person -right-> "*" Tag
+Person -down-> "1" PastMedicalHistory
+Person -down-> "1" Phone
+Person -down-> "1" SmokingRecord
+Person -up-> "1" IdentityNumber
+
+Class Appointment #806600
+Class AppointmentDateTime
+Class AppointmentNotes
+
+
+Appointment -down-> "1" IdentityNumber
+
+Appointment -left-> "1" AppointmentDateTime
+Appointment -right-> "1" AppointmentNotes
+}
+@enduml
