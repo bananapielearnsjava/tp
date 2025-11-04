@@ -62,6 +62,9 @@ public class JsonAdaptedAppointment {
         if (!AppointmentTime.isValidDateTimeFormat(time)) {
             throw new IllegalValueException(AppointmentTime.MESSAGE_FORMAT_CONSTRAINTS);
         }
+        if (!AppointmentTime.isValidDateTime(time)) {
+            throw new IllegalValueException(AppointmentTime.MESSAGE_VALID_DATE_CONSTRAINT + time);
+        }
         final AppointmentTime time = new AppointmentTime(this.time);
 
         final AppointmentNotes notes = new AppointmentNotes(this.notes == null ? "" : this.notes);

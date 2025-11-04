@@ -218,6 +218,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     SmokingRecord.class.getSimpleName()));
         }
+        if (!SmokingRecord.isValidSmokingRecord(smokingRecord)) {
+            throw new IllegalValueException(SmokingRecord.MESSAGE_CONSTRAINTS);
+        }
         final SmokingRecord modelSmokingRecord = new SmokingRecord(smokingRecord);
 
         if (alcoholicRecord == null) {
@@ -242,6 +245,9 @@ class JsonAdaptedPerson {
             logger.warning(() -> String.format("JsonAdaptedPerson: missing PastMedicalHistory for name='%s'", name));
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PastMedicalHistory.class.getSimpleName()));
+        }
+        if (!PastMedicalHistory.isValidPastMedicalHistory(pastMedicalHistory)) {
+            throw new IllegalValueException(PastMedicalHistory.MESSAGE_CONSTRAINTS);
         }
         final PastMedicalHistory modelPastMedicalHistory = new PastMedicalHistory(pastMedicalHistory);
 
