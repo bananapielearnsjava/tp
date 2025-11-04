@@ -69,7 +69,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <puml src="diagrams/ComponentManagers.puml" width="300" />
 
@@ -81,7 +81,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
@@ -339,19 +339,19 @@ Team Size: 5
 4. **Live updates for appointment lists:**
    In the current implementation, the appointment list does not update automatically when the time of an upcoming
    appointment has passed while the application is still open. The temporary solution to this is to exit and reopen the
-   application again. However, this may be a annoying to users if they have to do it frequently. Therefore, we plan to
+   application again. However, this may be annoying to users if they have to do it frequently. Therefore, we plan to
    make the appointment list time-sensitive and update live according to the local date and time.
 
 
 5. **Add Name on `Appointment` Cards in the appointments list**:
    Currently, the `Appointment` cards inside the appointments list only show the associated patient's ID and appointment
    notes. We figured that it would be much more useful if these appointment cards could also show the patient's names too.
-   Therefore, we plan to patient names to the `Appointment` UI element.
+   Therefore, we plan to add patient names to the `Appointment` UI element.
 
 
 6. **Wrap tag text:**
    Currently, the UI does not wrap the text for tag elements in the `PatientCard` inside the `PatientListPanel` and inside
-   the `Pateint View Panel` (e.g., `Allergies`, `Medicines`). Furthermore, there is no other way to view tags in a way that would display their full
+   the `Patient View Panel` (e.g., `Allergies`, `Medicines`). Furthermore, there is no other way to view tags in a way that would display their full
    content. We did not anticipate tags to have many characters, so we overlooked this in our implementation.
    Therefore, we plan to have a way to view the full tag, whether through text wrapping or inside the `PatientViewPanel`, and
    tweak the UI to be more user-friendly and wrap other overflowing tag elements.
@@ -376,7 +376,9 @@ Team Size: 5
    that this error message can be improved to inform the user that the list is empty and there are no appointments to delete.
 
 10. **Better UI for showing appointments in view panel**:
-   
+   The current UI does not nicely show a person's appointments. Moreover, if the appointment notes are too long the 
+   text may overflow. Therefore, we plan to improve the UI of showing appointments inside the person view panel 
+   to show the full appointment card together with time and notes.
 
 
 ---
@@ -389,7 +391,7 @@ Team Size: 5
 
 ***General Characteristics***:
 
-* independent home-care doctor often making home visits
+* independent home-care doctor, often making home visits
 * has a need to manage a significant number of patients with diverse conditions
 * works with limited resources (e.g., no receptionist, no nurse), self-services features are a must
 
@@ -407,7 +409,7 @@ Team Size: 5
 
 **Value proposition**:
 
-Helps independent doctors manager their patients and schedule more efficiently using a keyboard-focused UI.
+Helps independent doctors manage their patients and schedule more efficiently using a keyboard-focused UI.
 It is optimised for more tech-savvy doctors who prefer using a CLI.
 Enables quick retrieval of patient’s records, especially useful when they are always on the move.
 
@@ -416,7 +418,7 @@ Enables quick retrieval of patient’s records, especially useful when they are 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority   | As a …​              | I want to …​                                                 | So that I can…​                                                      |
+| Priority   | As a...              | I want to...                                                 | So that I can...                                                     |
 |------------|----------------------|--------------------------------------------------------------|----------------------------------------------------------------------|
 | `* * *`    | New User             | view user guide                                              | learn how to use the product whenever I need to                      |
 | `* * *`    | Doctor               | add a patient's name                                         | identify the patient correctly                                       |
