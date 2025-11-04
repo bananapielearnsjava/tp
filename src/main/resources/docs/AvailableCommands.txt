@@ -151,7 +151,7 @@ Add new appointment: schedule
 Adds the appointment for the patient identified by the index number in the displayed patient list.
 
 Format:
-  schedule INDEX adt\APPOINTMENT_TIME [note\APPOINTMENT_NOTE]
+  schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]
 
 Appointment Fields:
   [Must Contain]
