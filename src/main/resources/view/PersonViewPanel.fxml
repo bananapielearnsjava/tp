@@ -2,33 +2,65 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 
 <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="person-view-scroll-pane"
             xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER">
-        <Label fx:id="defaultLabel" text="Select a person using the 'view &lt;index&gt;'command"
+    <StackPane>
+        <Label fx:id="defaultLabel" text="Select a person using the 'view &lt;index&gt;' command"
                style="-fx-text-fill: grey; -fx-font-style: italic;"/>
         <VBox fx:id="personViewContainer" spacing="20" styleClass="person-view-vbox" visible="false" managed="false">
 
-            <Label fx:id="nameLabel" styleClass="person-view-name-label"/>
+        <Label fx:id="nameLabel" styleClass="person-view-name-label" wrapText="true" >
+            <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+        </Label>
 
+        <VBox spacing="8">
+            <Label text="Personal Information" styleClass="person-view-section-heading" />
+            <Label fx:id="idLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="dobLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="genderLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="phoneLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="emailLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="addressLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
 
-        <GridPane fx:id="infoGrid" hgap="10" vgap="8">
-            <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="140" maxWidth="200" />
-                <ColumnConstraints hgrow="ALWAYS" />
-            </columnConstraints>
-        </GridPane>
-
+            <Label text="Medical Details" styleClass="person-view-section-heading" />
+            <Label fx:id="emergencyContactLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="bloodTypeLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="alcoholicRecordLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="smokingRecordLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+            <Label fx:id="pmhLabel" styleClass="person-view-value-label" wrapText="true">
+                <minHeight><Region fx:constant="USE_PREF_SIZE" /></minHeight>
+            </Label>
+        </VBox>
 
         <Label text="Allergies" styleClass="person-view-section-heading" />
         <FlowPane fx:id="allergiesFlowPane" hgap="8" vgap="8" />
 
-        <Label text="Current Medicines" styleClass="person-view-section-heading" />
+        <Label text="Medicines" styleClass="person-view-section-heading" />
         <FlowPane fx:id="medicineFlowPane" hgap="8" vgap="8" />
 
         <Label text="Upcoming Appointments" styleClass="person-view-section-heading" />
@@ -37,5 +69,5 @@
         <Label text="Past Appointments" styleClass="person-view-section-heading" />
         <VBox fx:id="pastAppointmentsBox" spacing="5" styleClass="person-view-appointment-box"/>
     </VBox>
-    </VBox>
+    </StackPane>
 </ScrollPane>
