@@ -281,7 +281,7 @@ Format: `exit`
 
 ### Adding a patient: `add`
 
-Adds a patient to the address book. This command will also show the details of the added person in the Patient View Panel.
+Adds a patient to the address book. This command will also show the details of the added patient in the Patient View Panel.
 
 Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY_CONTACT dob\DATE_OF_BIRTH b\BLOOD_TYPE 
 [ar\ALCOHOLIC_RECORD] g\GENDER [sr\SMOKING_RECORD] [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...`
@@ -413,7 +413,7 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 
 ### Deleting a patient: `delete`
 
-Removes the specified patient from the patient list. This command will also show the details of the deleted person in the Patient View Panel.
+Removes the specified patient from the patient list. This command will also show the details of the deleted patient in the Patient View Panel.
 
 Format: `delete INDEX`
 * Deletes the patient at the specified `INDEX`.
