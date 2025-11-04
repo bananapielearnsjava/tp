@@ -14,7 +14,7 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
 
 <!-- TOC -->
 * [HealthNote User Guide](#healthnote-user-guide)
-    * [Table of Contents](#table-of-contents)
+  * [Table of Contents](#table-of-contents)
   * [Introduction](#introduction)
     * [What is HealthNote?](#what-is-healthnote)
     * [Who this guide is for](#who-this-guide-is-for)
@@ -329,12 +329,12 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                  | Reason                                                           | Solution                                                             |
-|------------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------|
-| This person already exists in the address book | You are adding a patient with the same id as an existing patient | Ensure that you do not enter a patient with the same id as an existing patient. |
-| Invalid command format!                        | Some of the essential prefixes could be missing or misspelled    | Refer to the [command format](#adding-a-patient-add)                 |
-| Unknown command                                | The `add` command may be misspelled or not entirely in lowercase | Ensure that you use `add` exactly in lowercase.                      |
-| Errors relating to invalid field inputs        | You have entered invalid inputs for a field.                     | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table)          |
+| Error Message                                   | Reason                                                            | Solution                                                                                                        |
+|-------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| This person already exists in the address book. | You are adding a patient with the same id as an existing patient. | Ensure that you do not enter a patient with the same id as an existing patient.                                 |
+| Invalid command format!                         | Some of the essential prefixes could be missing or misspelled.    | Refer to the [command format](#adding-a-patient-add).                                                           |
+| Unknown command.                                | The `add` command may be misspelled or not entirely in lowercase. | Ensure that you use `add` exactly in lowercase.                                                                 |
+| Errors relating to invalid field inputs.        | You have entered invalid inputs for a field.                      | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table). |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -349,8 +349,8 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
  [ec\EMERGENCY_CONTACT] [dob\DATE_OF_BIRTH] [b\BLOOD_TYPE] [ar\ALCOHOLIC_RECORD] [g\GENDER] [sr\SMOKING_RECORD] 
  [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...`
 
-* Edits the patient at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed patient list. 
+* Edits the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -359,38 +359,38 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 
 <div markdown="block" class="alert alert-info">
 
-**ℹ️ Info:**<br> 
+**ℹ️ Info:**<br>
 * You can remove all the patient’s tags by typing `t\` without
   specifying any tags after it.
 * You can remove all the patient’s medicine record by typing `m\` without
   specifying any medicines after it.
 * You can remove all the patient’s allergies by typing `al\` without
   specifying any allergies after it.
-* Typing `pmh\` without specifying any past medical history after it will 
-cause that patient's past medical history to default to the value "None". <br>
+* Typing `pmh\` without specifying any past medical history after it will
+  cause that patient's past medical history to default to the value "None". <br>
   The same applies to `ar\` and `sr\` for alcoholic and smoking record respectively.
 </div>
 
 **Input Constraints Table**
 
-| **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                                 |
-| ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-------------------------------------------------------------------------------------------------|
-| **INDEX**                    | ✓               | ✗                      | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the patient list.                                  |
-| **n\NAME**                   | ✗               | ✗                      | Full legal name of the patient.                                                     | Names can take any values, and it should not be blank                                           |
-| **id\IDENTITY_NUMBER**       | ✗               | ✗                      | Identification number (e.g., national ID, passport number, or hospital ID).         | Identity number should only contain alphanumeric characters and/or "-" and ".", without spaces. |
-| **p\PHONE_NUMBER**           | ✗               | ✗                      | Primary phone number for reaching the patient.                                      | Must contain at least 2 consecutive digits                                                      |
-| **e\EMAIL**                  | ✗               | ✗                      | Patient’s email address for communication.                                          | Emails should be of the format local-part@domain                                                |
-| **addr\HOME_ADDRESS**        | ✗               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                       |
+| **Field (with Prefix)**      | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                                                               |
+| ---------------------------- | --------------- | ---------------------- | ----------------------------------------------------------------------------------- |-----------------------------------------------------------------------------------------------|
+| **INDEX**                    | ✓               | ✗                      | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the patient list                                 |
+| **n\NAME**                   | ✗               | ✗                      | Full legal name of the patient.                                                     | Names can take any values, and it should not be blank                                         |
+| **id\IDENTITY_NUMBER**       | ✗               | ✗                      | Identification number (e.g., national ID, passport number, or hospital ID).         | Identity number should only contain alphanumeric characters and/or "-" and ".", without spaces |
+| **p\PHONE_NUMBER**           | ✗               | ✗                      | Primary phone number for reaching the patient.                                      | Must contain at least 2 consecutive digits                                                    |
+| **e\EMAIL**                  | ✗               | ✗                      | Patient’s email address for communication.                                          | Emails should be of the format local-part@domain                                              |
+| **addr\HOME_ADDRESS**        | ✗               | ✗                      | Current residential address of the patient.                                         | Addresses can take any values, and it should not be blank                                     |
 | **ec\EMERGENCY_CONTACT**     | ✗               | ✗                      | Name and contact details of a patient to contact in case of emergency.              | Must be in the form [{relationship}] {phone} where phone contains at least 2 consecutive digits |
-| **dob\DATE_OF_BIRTH**        | ✗               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                  |
-| **b\BLOOD_TYPE**             | ✗               | ✗                      | Patient’s blood group (e.g., A+, O-, etc.).                                         | Blood types can take any values, and it should not be blank                                     |
-| **g\GENDER**                 | ✗               | ✗                      | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). | Genders can take any values, and it should not be blank                                         |
-| **ar\ALCOHOLIC_RECORD**      | ✗               | ✗                      | Indicates whether the patient consumes alcohol and relevant details or frequency.   | Alcoholic Record can take any values, and it should not be blank                                |
-| **sr\SMOKING_RECORD**        | ✗               | ✗                      | Indicates whether the patient smokes and relevant details or frequency.             | Smoking Record can take any values, and it should not be blank                                  |
-| **pmh\PAST_MEDICAL_HISTORY** | ✗               | ✗                      | Summary of major past illnesses, surgeries, or chronic conditions.                  | Past Medical History can take any values, and it should not be blank                            |
-| **t\TAG**                    | ✗               | ✓                      | Custom labels or categories for organising patients.                                | Tags names can take any values, and it should not be blank                                      |
-| **al\ALLERGY**               | ✗               | ✓                      | List of known allergies (e.g., “Peanuts”, “Penicillin”).                            | Allergy names can take any values, and it should not be blank                                   |
-| **m\MEDICINE**               | ✗               | ✓                      | List of current medications prescribed to the patient.                              | Medicine field can take any values, and it should not be blank                                  |
+| **dob\DATE_OF_BIRTH**        | ✗               | ✗                      | Patient’s date of birth.                                                            | Date of birth should be of the following formats: d-M-yyyy, d.M.yyyy, d/M/yyyy                |
+| **b\BLOOD_TYPE**             | ✗               | ✗                      | Patient’s blood group (e.g., A+, O-, etc.).                                         | Blood types can take any values, and it should not be blank                                   |
+| **g\GENDER**                 | ✗               | ✗                      | Gender identity of the patient (e.g., Male, Female, Non-binary, Prefer not to say). | Genders can take any values, and it should not be blank                                       |
+| **ar\ALCOHOLIC_RECORD**      | ✗               | ✗                      | Indicates whether the patient consumes alcohol and relevant details or frequency.   | Alcoholic Record can take any values, and it should not be blank                              |
+| **sr\SMOKING_RECORD**        | ✗               | ✗                      | Indicates whether the patient smokes and relevant details or frequency.             | Smoking Record can take any values, and it should not be blank                                |
+| **pmh\PAST_MEDICAL_HISTORY** | ✗               | ✗                      | Summary of major past illnesses, surgeries, or chronic conditions.                  | Past Medical History can take any values, and it should not be blank                          |
+| **t\TAG**                    | ✗               | ✓                      | Custom labels or categories for organising patients.                                | Tags names can take any values, and it should not be blank                                    |
+| **al\ALLERGY**               | ✗               | ✓                      | List of known allergies (e.g., “Peanuts”, “Penicillin”).                            | Allergy names can take any values, and it should not be blank                                 |
+| **m\MEDICINE**               | ✗               | ✓                      | List of current medications prescribed to the patient.                              | Medicine field can take any values, and it should not be blank                                |
 
 
 #### Examples:
@@ -399,14 +399,14 @@ cause that patient's past medical history to default to the value "None". <br>
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                                           | Reason                                                                                       | Solution                                                                                                       |
-|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| This person already exists in the address book                          | You are editing a patient to have the same id as an existing patient.                        | Ensure that you do not enter a patient with the same id as an existing patient.                                |
-| Unknown command                                                         | The `edit` command may be misspelled or not entirely in lowercase.                           | Ensure that you use `edit` exactly in lowercase.                                                               |
-| Errors relating to invalid field inputs                                 | You have entered invalid inputs for a field.                                                 | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table) |
-| The patient index provided is invalid                                   | You have entered an invalid index                                                            | Ensure that the index is not more than the number of patients in the currently displayed list.                 |
-| At least one field to edit must be provided.                            | You have not entered any fields to edit.                                                     | Enter at least one field to edit.                                                                              |
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`.                                                                 |
+| Error Message                                                           | Reason                                                                                       | Solution                                                                                                        |
+|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| This person already exists in the address book.                         | You are editing a patient to have the same id as an existing patient.                        | Ensure that you do not enter a patient with the same id as an existing patient.                                 |
+| Unknown command.                                                        | The `edit` command may be misspelled or not entirely in lowercase.                           | Ensure that you use `edit` exactly in lowercase.                                                                |
+| Errors relating to invalid field inputs.                                | You have entered invalid inputs for a field.                                                 | Ensure that your inputs meet the constraints stated in the [Input Constraints Table](#input-constraints-table). |
+| The patient index provided is invalid.                                  | You have entered an invalid index                                                            | Ensure that the index is not more than the number of patients in the currently displayed list.                  |
+| At least one field to edit must be provided.                            | You have not entered any fields to edit.                                                     | Enter at least one field to edit.                                                                               |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes.           |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -425,11 +425,11 @@ Format: `delete INDEX`
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                                           | Reason                                                                                           | Solution                                                                                     |
-|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer.     | Enter an unsigned, non-zero integer as `INDEX`.                       |
-| Unknown command                                                         | The `delete` command may have been misspelled or not entered in lowercase.                       | Ensure that you use `delete` exactly in lowercase.                                           |
-| The patient index provided is invalid                                   | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the `INDEX` not more than the number of patients in the currently displayed list. |
+| Error Message                                                           | Reason                                                                                           | Solution                                                                                              |
+|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer.     | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
+| Unknown command.                                                        | The `delete` command may have been misspelled or not entered in lowercase.                       | Ensure that you use `delete` exactly in lowercase.                                                    |
+| The patient index provided is invalid.                                  | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the `INDEX` not more than the number of patients in the currently displayed list.         |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -455,9 +455,9 @@ Format: `view INDEX`
 
 | Error Message                                                           | Reason                                                                                           | Solution                                                                                              |
 |-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer.      | Enter an unsigned, non-zero integer as `INDEX`.                                                        |
-| Unknown command                                                         | The `view` command may have been misspelled or not entered in lowercase                          | Ensure that you use `view` exactly in lowercase.                                                      |
-| The patient index provided is invalid                                   | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer.     | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
+| Unknown command.                                                        | The `view` command may have been misspelled or not entered in lowercase.                         | Ensure that you use `view` exactly in lowercase.                                                      |
+| The patient index provided is invalid.                                  | You have entered an `INDEX` that exceeds the number of patients in the currently displayed list. | Ensure that the entered `INDEX` not more than the number of patients in the currently displayed list. |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -497,7 +497,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 <box type="tip" seamless>
 
 **Tip:** The fields can be entered in any order. <br>
-  e.g. `find John Alex` returns the same results as `find Alex John`<br>
+e.g. `find John Alex` returns the same results as `find Alex John`<br>
 </box>
 
 #### Examples:
@@ -506,10 +506,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                              | Reason                                                            | Solution                                                                      |
-|--------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Error! Please provide at least one keyword | You may not have provided any keyword                             | Add at least one keyword, e.g. `John`.                                        |
-| Unknown command                            | The `find` command may be misspelled or not entirely in lowercase | Ensure that you use `find` exactly in lowercase.                              |
+| Error Message                               | Reason                                                             | Solution                                                                      |
+|---------------------------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| Error! Please provide at least one keyword. | You may not have provided any keyword.                             | Add at least one keyword, e.g. `John`.                                        |
+| Unknown command.                            | The `find` command may be misspelled or not entirely in lowercase. | Ensure that you use `find` exactly in lowercase.                              |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -517,7 +517,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ## Features - Managing Appointment Records
 
-### Scheduling an appointment: `schedule` 
+### Scheduling an appointment: `schedule`
 
 Adds an appointment for a specific patient at a certain time.
 
@@ -528,11 +528,11 @@ Adds an appointment for a specific patient at a certain time.
 
 **Input Constraints Table**
 
-| **Field (with Prefix)**       | **Compulsory?** | **Can have multiple?** | **Description**                                                                     | **Constraints**                                             |
-|-------------------------------|-----------------|------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **INDEX**                     | &check;         | &cross;                | Index of the patient in the Patient List Panel.                                     | Must be a positive number and valid INDEX in the shown list |
-| **adt\APPOINTMENT_DATE_TIME** | &check;         | &cross;                | Full date time of the scheduled appointment                                         | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
-| **note\APPOINTMENT_NOTE**     | &cross;         | &cross;                | Any additional notes for this particular appointment                                | Any string                                                  |
+| **Field (with Prefix)**       | **Compulsory?** | **Can have multiple?** | **Description**                                       | **Constraints**                                             |
+|-------------------------------|-----------------|------------------------|-------------------------------------------------------|-------------------------------------------------------------|
+| **INDEX**                     | &check;         | &cross;                | Index of the patient in the Patient List Panel.       | Must be a positive number and valid INDEX in the shown list |
+| **adt\APPOINTMENT_DATE_TIME** | &check;         | &cross;                | Full date time of the scheduled appointment.          | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
+| **note\APPOINTMENT_NOTE**     | &cross;         | &cross;                | Any additional notes for this particular appointment. | Any string                                                  |
 
 #### Example:
 * To schedule an appointment with the first patient in the displayed list, you can enter: `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`.
@@ -546,12 +546,12 @@ Adds an appointment for a specific patient at a certain time.
   
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                                                           | Reason                                                                                      | Solution                                                             |
-|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| Invalid command format!                                                 | Some of the essential prefixes could be missing or misspelled.                              | Ensure `INDEX` and `adt\` are provided.                              |
-| Unknown command                                                         | The `schedule` command may be misspelled or not entirely in lowercase.                      | Ensure that you use `schedule` exactly in lowercase.                 |
-| The patient index provided is invalid                                   | You have entered an invalid index.                                                          | Ensure that the `INDEX` provided is a valid index in the shown list. |
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`.                       |
+| Error Message                                                           | Reason                                                                                      | Solution                                                                                              |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Invalid command format!                                                 | Some of the essential prefixes could be missing or misspelled.                              | Ensure `INDEX` and `adt\` are provided.                                                               |
+| Unknown command.                                                        | The `schedule` command may be misspelled or not entirely in lowercase.                      | Ensure that you use `schedule` exactly in lowercase.                                                  |
+| The patient index provided is invalid.                                  | You have entered an invalid index.                                                          | Ensure that the `INDEX` provided is a valid index in the shown list.                                  |
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -568,11 +568,11 @@ Deletes an upcoming appointment from the displayed upcoming appointments list.
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                             | Reason                                                                                      | Solution                                                             |
-|-------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`.                       |
-| Unknown command                           | The `unschedule` command may be misspelled or not entirely in lowercase                     | Ensure that you use `unschedule` exactly in lowercase.               |
-| The appointment index provided is invalid | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| Error Message                                                           | Reason                                                                                       | Solution                                                                                              |
+|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
+| Unknown command.                                                        | The `unschedule` command may be misspelled or not entirely in lowercase.                     | Ensure that you use `unschedule` exactly in lowercase.                                                |
+| The appointment index provided is invalid.                              | You have entered an invalid index.                                                           | Ensure that the `INDEX` provided is a valid index in the shown list.                                  |
 
 ### Delete past appointment: `forget`
 
@@ -586,11 +586,11 @@ Deletes a past appointment from the displayed past appointments list.
 
 **Here is a list of common errors and how to prevent them**
 
-| Error Message                             | Reason                                                                                      | Solution                                                             |
-|-------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
-| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`.                       |
-| Unknown command                           | The `forget` command may be misspelled or not entirely in lowercase                         | Ensure that you use `forget` exactly in lowercase.                   |
-| The appointment index provided is invalid | You have entered an invalid index                                                           | Ensure that the `INDEX` provided is a valid index in the shown list. |
+| Error Message                                                           | Reason                                                                                       | Solution                                                                                              |
+|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
+| Unknown command.                                                        | The `forget` command may be misspelled or not entirely in lowercase.                         | Ensure that you use `forget` exactly in lowercase.                                                    |
+| The appointment index provided is invalid.                              | You have entered an invalid index.                                                           | Ensure that the `INDEX` provided is a valid index in the shown list.                                  |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -687,9 +687,9 @@ Furthermore, certain edits can cause the HealthNote application to behave in une
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will be focused, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. **If a tag element is made to hold a large number of characters**, its UI could overflow the panel, causing it to be cut off or the panel to start horizontal scroll. 
-Specifically, adding a very long `tag` to a patient will cause the tag to be cut off by the border of the `Patient List`. Adding a very long `Allergy` or `Medicine` will cause
-the `Patient View Panel` to horizontal scroll. The remedy to this is to avoid creating overly long tag elements. 
+3. **If a tag element is made to hold a large number of characters**, its UI could overflow the panel, causing it to be cut off or the panel to start horizontal scroll.
+   Specifically, adding a very long `tag` to a patient will cause the tag to be cut off by the border of the `Patient List`. Adding a very long `Allergy` or `Medicine` will cause
+   the `Patient View Panel` to horizontal scroll. The remedy to this is to avoid creating overly long entries for these fields.
 
 [Back to Table of Contents](#table-of-contents)
 
