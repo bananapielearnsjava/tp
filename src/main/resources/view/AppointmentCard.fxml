@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
@@ -15,20 +14,16 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="80" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="patientId" text="\$patientId" styleClass="cell_big_label" />
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" minWidth="15.0" styleClass="cell_big_label" wrapText="true" />
+                <Label fx:id="patientId" styleClass="cell_big_label" text="\$patientId" wrapText="true" />
             </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" />
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime" wrapText="true" />
             </HBox>
-            <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" wrapText="true"/>
+            <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" wrapText="true" />
         </VBox>
     </GridPane>
 </HBox>
