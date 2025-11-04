@@ -50,7 +50,7 @@ skinparam Class {
 
 skinparam Object {
     FontColor #FFFFFF
-    FontSize 15
+    FontSize 20
     BorderThickness 1
     BorderColor #FFFFFF
     StereotypeFontColor #FFFFFF

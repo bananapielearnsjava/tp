@@ -48,8 +48,8 @@ Person *--> "all" PersonXYZProperties
 Appointment *--> "1" IdentityNumber
 Appointment *--> "all" AppointmentXYZProperties
 
-ModelManager --> "~* filtered" Person
-ModelManager --> "~* filtered and sorted" Appointment
+ModelManager --> "~* <size:10>filtered</size>" Person
+ModelManager --> "~* <size:10>filtered and sorted</size>" Appointment
 
 UserPrefs -[hidden]--> UniquePersonList
 UniqueAppointmentList -[hidden]right-> UniquePersonList

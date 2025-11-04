@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ModelManager -right-> "1" ViewedPerson
+ViewedPerson *-down-> "1" Person
+
+ViewedPerson *-right-> "*" Appointments : SortedUpcomingAppointments
+ViewedPerson *-right-> "*" Appointments : SortedPastAppointments
+
+@enduml
