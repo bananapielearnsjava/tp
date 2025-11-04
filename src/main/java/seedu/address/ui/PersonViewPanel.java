@@ -8,10 +8,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.appointment.Appointment;
@@ -27,7 +25,6 @@ public class PersonViewPanel extends UiPart<Region> {
     // CSS Style classes
     private static final String TAG_STYLE_CLASS = "person-view-tag";
     private static final String NONE_TAG_STYLE_CLASS = "person-view-none-tag";
-    private static final String FIELD_LABEL_STYLE_CLASS = "person-view-field-label";
     private static final String VALUE_LABEL_STYLE_CLASS = "person-view-value-label";
 
     private final ObservableValue<Person> person;
@@ -41,14 +38,32 @@ public class PersonViewPanel extends UiPart<Region> {
     @FXML
     private Label nameLabel;
 
+    // FXML Labels for Personal and Medical Info
     @FXML
-    private GridPane infoGrid;
+    private Label idLabel;
+    @FXML
+    private Label dobLabel;
+    @FXML
+    private Label genderLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label addressLabel;
+    @FXML
+    private Label emergencyContactLabel;
+    @FXML
+    private Label bloodTypeLabel;
+    @FXML
+    private Label alcoholicRecordLabel;
+    @FXML
+    private Label smokingRecordLabel;
+    @FXML
+    private Label pmhLabel;
 
     @FXML
     private FlowPane allergiesFlowPane;
-
-    @FXML
-    private FlowPane pastDiagnosisFlowPane;
 
     @FXML
     private FlowPane medicineFlowPane;
@@ -76,7 +91,9 @@ public class PersonViewPanel extends UiPart<Region> {
             defaultLabel.setManaged(newValue == null);
             personViewContainer.setManaged(newValue != null);
             personViewContainer.setVisible(newValue != null);
-            fillPersonDetails(newValue);
+            if (newValue != null) {
+                fillPersonDetails(newValue);
+            }
         });
 
         upcomingAppointments.addListener(new ListChangeListener<Appointment>() {
@@ -100,28 +117,21 @@ public class PersonViewPanel extends UiPart<Region> {
         nameLabel.setText(person.getName().fullName);
 
         // Personal Info
-        infoGrid.getChildren().clear();
-        Label section = new Label("Personal Information");
-        section.getStyleClass().add("person-view-section-heading");
-        infoGrid.add(section, 0, infoGrid.getRowCount(), 2, 1);
-
-        addGridRow(infoGrid, "Identity Number:", person.getIdentityNumber().identityNumber);
-        addGridRow(infoGrid, "Date of Birth:", person.getDateOfBirth().toString()
+        idLabel.setText("Identity Number: " + person.getIdentityNumber().identityNumber);
+        dobLabel.setText("Date of Birth: " + person.getDateOfBirth().toString()
                 + " (" + person.getDateOfBirth().calculateAge() + " yrs old)");
-        addGridRow(infoGrid, "Gender:", person.getGender().toString());
-        addGridRow(infoGrid, "Phone:", person.getPhone().value);
-        addGridRow(infoGrid, "Email:", person.getEmail().value);
-        addGridRow(infoGrid, "Address:", person.getAddress().value);
+        genderLabel.setText("Gender: " + person.getGender().toString());
+        phoneLabel.setText("Phone: " + person.getPhone().value);
+        emailLabel.setText("Email: " + person.getEmail().value);
+        addressLabel.setText("Address: " + person.getAddress().value);
 
         // Medical Info
-        Label section2 = new Label("Medical Details");
-        section2.getStyleClass().add("person-view-section-heading");
-        infoGrid.add(section2, 0, infoGrid.getRowCount(), 2, 1);
-        addGridRow(infoGrid, "Emergency Contact:", person.getEmergencyContact().toString());
-        addGridRow(infoGrid, "Blood Type:", person.getBloodType().toString());
-        addGridRow(infoGrid, "Alcoholic Record:", person.getAlcoholicRecord().toString());
-        addGridRow(infoGrid, "Smoking Record:", person.getSmokingRecord().toString());
-        addGridRow(infoGrid, "Past Medical History:", person.getPastMedicalHistory().toString());
+        emergencyContactLabel.setText("Emergency Contact: " + person.getEmergencyContact().toString());
+        bloodTypeLabel.setText("Blood Type: " + person.getBloodType().toString());
+        alcoholicRecordLabel.setText("Alcoholic Record: " + person.getAlcoholicRecord().toString());
+        smokingRecordLabel.setText("Smoking Record: " + person.getSmokingRecord().toString());
+        pmhLabel.setText("Past Medical History: " + person.getPastMedicalHistory().toString());
+
 
         // Lists
         Set<String> allergyValues = person.getAllergies().stream()
@@ -181,28 +191,6 @@ public class PersonViewPanel extends UiPart<Region> {
         String dateTimeStr = appointment.getDateTime().toString();
         String notesStr = appointment.getNotes().toString();
         return dateTimeStr + (notesStr.isEmpty() ? "" : ": " + notesStr);
-    }
-
-    /**
-     * Adds a new row (field name and value) to a given GridPane.
-     * Aligns field names to the top-right and allows values to wrap.
-     *
-     * @param grid The GridPane to add to.
-     * @param fieldName The text for the field label (e.g., "Phone:").
-     * @param value The text for the value label.
-     */
-    private void addGridRow(GridPane grid, String fieldName, String value) {
-        Label fieldLabel = new Label(fieldName);
-        fieldLabel.getStyleClass().add(FIELD_LABEL_STYLE_CLASS);
-        fieldLabel.setAlignment(Pos.TOP_RIGHT);
-
-        Label valueLabel = new Label(value);
-        valueLabel.getStyleClass().add(VALUE_LABEL_STYLE_CLASS);
-        valueLabel.setWrapText(true);
-
-        int newRowIndex = grid.getRowCount();
-        grid.add(fieldLabel, 0, newRowIndex);
-        grid.add(valueLabel, 1, newRowIndex);
     }
 
     /**
