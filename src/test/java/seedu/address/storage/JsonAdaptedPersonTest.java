@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,14 +20,18 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AlcoholicRecord;
+import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Medicine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PastMedicalHistory;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SmokingRecord;
+import seedu.address.model.tag.Tag;
 
 /**
  * Test class for JsonAdaptedPerson.
@@ -43,6 +48,8 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_GENDER = " ";
     private static final String INVALID_SMOKING_RECORD = " ";
     private static final String INVALID_PAST_MEDICAL_HISTORY = " ";
+    private static final String INVALID_MEDICINE = " ";
+    private static final String INVALID_ALLERGY = " ";
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_IDENTITY_NUMBER = BENSON.getIdentityNumber().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -231,6 +238,17 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidBloodType_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, INVALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD,
+                        VALID_SMOKING_RECORD, VALID_GENDER, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                        VALID_MEDICINES);
+        String expectedMessage = BloodType.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullBloodType_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, null, VALID_ALCOHOLIC_RECORD,
@@ -238,6 +256,17 @@ public class JsonAdaptedPersonTest {
                 VALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidGender_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD,
+                        INVALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                        VALID_MEDICINES);
+        String expectedMessage = Gender.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -253,6 +282,17 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_invalidSmokingRecord_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD,
+                        VALID_GENDER, INVALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                        VALID_MEDICINES);
+        String expectedMessage = SmokingRecord.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
     public void toModelType_nullSmokingRecord_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
@@ -260,6 +300,17 @@ public class JsonAdaptedPersonTest {
                         VALID_GENDER, VALID_BLOOD_TYPE, null, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
                         VALID_MEDICINES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, SmokingRecord.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPastMedicalHistory_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER,
+                        VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB,
+                        VALID_BLOOD_TYPE, VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES,
+                        INVALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
+        String expectedMessage = PastMedicalHistory.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -295,6 +346,27 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
+    public void toModelType_nullCollections_returnsPersonWithEmptySets() throws Exception {
+        // Pass null for all three collection fields
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_EMERGENCY_CONTACT,
+                null, // tags
+                VALID_DOB, VALID_BLOOD_TYPE,
+                VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD,
+                null, // allergies
+                VALID_PAST_MEDICAL_HISTORY,
+                null); // medicines
+
+        // Convert to model type
+        Person modelPerson = person.toModelType();
+
+        // Verify that the resulting Person object has empty, non-null sets for these fields
+        assertEquals(new HashSet<Tag>(), modelPerson.getTags());
+        assertEquals(new HashSet<Allergy>(), modelPerson.getAllergies());
+        assertEquals(new HashSet<Medicine>(), modelPerson.getMedicines());
+    }
+
+    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
@@ -306,4 +378,28 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidMedicine_throwsIllegalValueException() {
+        List<JsonAdaptedMedicine> invalidMedicine = new ArrayList<>(VALID_MEDICINES);
+        invalidMedicine.add(new JsonAdaptedMedicine(INVALID_MEDICINE));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, VALID_ALLERGIES, VALID_PAST_MEDICAL_HISTORY,
+                invalidMedicine);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAllergies_throwsIllegalValueException() {
+        List<JsonAdaptedAllergy> invalidAllergies = new ArrayList<>(VALID_ALLERGIES);
+        invalidAllergies.add(new JsonAdaptedAllergy(INVALID_ALLERGY));
+
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_IDENTITY_NUMBER, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_EMERGENCY_CONTACT, VALID_TAGS, VALID_DOB, VALID_BLOOD_TYPE,
+                VALID_ALCOHOLIC_RECORD, VALID_GENDER, VALID_SMOKING_RECORD, invalidAllergies,
+                VALID_PAST_MEDICAL_HISTORY, VALID_MEDICINES);
+
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 }
