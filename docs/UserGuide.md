@@ -38,15 +38,14 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
     * [Listing all patients: `list`](#listing-all-patients-list)
     * [Locating patients by name or identity number: `find`](#locating-patients-by-name-or-identity-number-find)
   * [Features - Managing Appointment Records](#features-managing-appointment-records)
-    * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule-)
-    * [Deleting an upcoming appointment: `unschedule`](#deleting-upcoming-appointment-unschedule)
+    * [Scheduling an appointment: `schedule`](#scheduling-an-appointment-schedule)
+    * [Deleting an upcoming appointment: `unschedule`](#deleting-an-upcoming-appointment-unschedule)
     * [Delete past appointment: `forget`](#delete-past-appointment-forget)
   * [Features - Clearing Data](#features-clearing-data)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
   * [Features - Data Management](#features-data-management)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
-    * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
   * [FAQ](#faq)
     * [Data Management](#data-management)
     * [Common Issues](#common-issues)
@@ -137,6 +136,8 @@ Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S
 
 Congratulations! You are now ready to use HealthNote. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## User Interface
@@ -162,7 +163,6 @@ Here are the key components of the HealthNote User Interface (UI), designed for 
 ## Features
 
 ### Command Format
-
 
 In this section, we will break down the core components of a command in HealthNote. Understanding these components will help you input commands accurately and efficiently.
 
@@ -200,8 +200,7 @@ In the command format, special symbols surrounding prefixes and fields indicate 
 
 <box type="info" seamless>
 
-#### Examples:
-
+**Examples:**
 * `n\NAME [t\TAG]` can be used as `n\John Doe t\VIP` or as `n\John Doe`.
 * `[t\TAG]...`. can be used 0 or more times, e.g., `t\VIP`, `t\VIP t\Urgent`, or not at all.
 
@@ -253,7 +252,7 @@ Format: `theme THEME_NAME`
 * The theme name **must be exactly one of the available options**.
 * Theme names are case-insensitive, both lowercase and uppercase letters are accepted.
 
-#### Examples:
+**Examples:**
 * `theme dark` changes the application to dark mode.
 * `theme pink` changes the application to pink mode.
 
@@ -270,7 +269,6 @@ Format: `exit`
 * Closes the HealthNote application.
 * No additional parameters are required.
 * All data is automatically saved before exiting.
-
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -319,7 +317,7 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 **Tip:** The fields can be entered in any order.
 </box>
 
-#### Examples:
+**Examples:**
 * `add n\John Doe id\A91234567 p\98765432 e\johnd@example.com addr\311, Clementi Ave 2, #02-25 ec\[Mother] +6591234567
  b\AB ar\Social drinker g\M dob\01-01-2000 sr\Heavy smoker al\nuts t\priorityHigh t\diabetesFollowUp pmh\Diabetes
  m\100mg painkillers/day m\100mg Panadol/day`
@@ -393,7 +391,7 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 | **m\MEDICINE**               | ✗               | ✓                      | List of current medications prescribed to the patient.                              | Medicine field can take any values, and it should not be blank                                |
 
 
-#### Examples:
+**Examples:**
 *  `edit 1 p\91234567 e\johndoe@example.com` Edits the phone number and email address of the first patient to `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n\Betsy Crower t\` Edits the name of the second patient to `Betsy Crower` and clears all existing tags.
 
@@ -420,7 +418,7 @@ Format: `delete INDEX`
 * The `INDEX` refers to the index number shown in the currently displayed patient list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, ...
 
-#### Example:
+**Example:**
 * `delete 2` deletes the second patient in the patient list panel (if they exist).
 
 **Here is a list of common errors and how to prevent them**
@@ -448,7 +446,7 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, ...
 
 
-#### Example:
+**Example:**
 - `view 1` displays the full information of the first patient in the patient list panel.
 
 **Here is a list of common errors and how to prevent them:**
@@ -500,7 +498,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 e.g. `find John Alex` returns the same results as `find Alex John`<br>
 </box>
 
-#### Examples:
+**Examples:**
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
@@ -535,9 +533,8 @@ appointment has been scheduled for in the Patient View Panel.
 | **adt\APPOINTMENT_DATE_TIME** | &check;         | &cross;                | Full date time of the scheduled appointment.          | d-M-yyyy HH:mm, d/M/yyyy HH:mm, or d.M.yyyy HH:mm           |
 | **note\APPOINTMENT_NOTE**     | &cross;         | &cross;                | Any additional notes for this particular appointment. | Any string                                                  |
 
-#### Example:
+**Example:**
 * To schedule an appointment with the first patient in the displayed list, you can enter: `schedule 1 adt\13-10-2025 10:00 note\Needs IV Drip`.
-
 
 <box type="tip" seamless>
 
@@ -554,7 +551,9 @@ appointment has been scheduled for in the Patient View Panel.
 | The patient index provided is invalid.                                  | You have entered an invalid index.                                                          | Ensure that the `INDEX` provided is a valid index in the shown list.                                  |
 | You must provide an index and it has to be a non-zero unsigned integer. | You did not specify an `INDEX` or the `INDEX` provided is not an unsigned, non-zero integer. | Enter an unsigned, non-zero integer as `INDEX`, and ensure that you do not have any invalid prefixes. |
 
+
 [Back to Table of Contents](#table-of-contents)
+
 
 ### Deleting an upcoming appointment: `unschedule`
 
@@ -563,7 +562,7 @@ Deletes an upcoming appointment from the displayed upcoming appointments list.
 **Format:** `unschedule INDEX`
 * Deletes an appointment from the upcoming appointments list at the specified INDEX.
 
-#### Example:
+**Example:**
 * To delete the first upcoming appointment in the displayed list, you can enter: `unschedule 1`
 
 
@@ -582,7 +581,7 @@ Deletes a past appointment from the displayed past appointments list.
 **Format:** `forget INDEX`
 * Deletes an appointment from the past appointments list at the specified INDEX.
 
-#### Example:
+**Example:**
 * To delete the first past appointment in the displayed list, you can enter: `forget 1`
 
 **Here is a list of common errors and how to prevent them**
