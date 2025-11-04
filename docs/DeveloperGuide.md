@@ -13,7 +13,17 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is heavily adapted from the **AddressBook-Level3 (AB3)** project, which was created by the
+[SE-EDU initiative](https://se-education.org/) as a teaching resource for the CS2103T module at the National University of Singapore.
+
+* We have reused and adapted its core architecture (Model-View-Controller, Logic, Storage), UI framework, and the structure of this Developer Guide.
+* All diagrams in this guide are generated using [PlantUML](https://plantuml.com/).
+
+This project also makes use of the following third-party libraries:
+
+* [JavaFX](https://openjfx.io/): For the Graphical User Interface (GUI).
+* [Jackson](https://github.com/FasterXML/jackson): For serializing and deserializing data to and from JSON format.
+* [JUnit5](https://junit.org/junit5/): For unit testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +69,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <puml src="diagrams/ComponentManagers.puml" width="300" />
 
@@ -71,7 +81,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g., `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-F11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
@@ -124,7 +134,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and `Appointment` store a common reference of `IdentityNumber`
+* each `Person` and their `Appointment`s store a common reference of `IdentityNumber`
 
 The object diagram below illustrates the important parts of how `ModelManager` is structured and how `UI` interacts with it.
 
@@ -135,7 +145,7 @@ The `ModelManager`,
 * stores a list of `Person` objects called `FilteredPersonList`. This is the list that is displayed in the `PersonListPanel` in `UI`
 * stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`. These are the lists displayed by `AppointmentListPanel` in `UI`
 * stores a `Person` object called `ViewedPerson` which is the person currently being viewed in the `PersonViewPanel` in `UI`
-* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and the other is `SortedViewPersonPastAppointments`
 * exposes the above components to outsiders as unmodifiable `ObservableList`s and `ObservableValue` that can be 'observed'. The UI components are bound to them and automatically update when the data changes.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -150,6 +160,10 @@ The `ModelManager`,
 **Note:** The above diagrams are simplified to show the most important components and their main associations. Below is a detailed class diagram of Person and Appointment.
 
 <puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="1000" />
+
+</box>
+
+<box type="info" seamless>
 
 **Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order.<br>
 
@@ -307,12 +321,14 @@ Team Size: 5
    When the user sets a new theme, this data will be updated.
 
 
-2. **More specific error message for `schedule` command**:
-   The current error message when the `schedule` command is executed with missing or invalid parameters is
-   `Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
-   These reasons for failure include missing parameters, or invalid parameters provided.
-   For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
-unrecognised parameter(s): a\, b\ `
+2. **More fit error message for `schedule` command**:
+   The current error message when the `schedule` command is executed with an index but missing or invalid prefixes
+   is `You must provide an index and it has to be a non-zero unsigned integer.` This error message occurs because the
+   parser parses the invalid prefix together with the index and throws an exception as it sees it as not valid. Therefore,
+   we plan to make the error messages for this command more specific and accurate, by mentioning the reason for
+   failure. These reasons include, but are not limited to, missing non-optional parameters, and invalid parameters
+   provided. An example of such an error message is `Command could not be executed due to missing parameter:
+   adt\` or `Command could not be executed due to unrecognised parameter(s): a\, b\ `
 
 
 3. **Warn Overlapping Appointments:**
@@ -322,6 +338,52 @@ unrecognised parameter(s): a\, b\ `
    happening as it could be the intended action of the user. However, there is also a possibility that the user had
    overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
    to add a message to notify the user if this occurs.
+
+
+4. **Live updates for appointment lists:**
+   In the current implementation, the appointment list does not update automatically when the time of an upcoming
+   appointment has passed while the application is still open. The temporary solution to this is to exit and reopen the
+   application again. However, this may be annoying to users if they have to do it frequently. Therefore, we plan to
+   make the appointment list time-sensitive and update live according to the local date and time.
+
+
+5. **Add Name on `Appointment` Cards in the appointments list**:
+   Currently, the `Appointment` cards inside the appointments list only show the associated patient's ID and appointment
+   notes. We figured that it would be much more useful if these appointment cards could also show the patient's names too.
+   Therefore, we plan to add patient names to the `Appointment` UI element.
+
+
+6. **Wrap tag text:**
+   Currently, the UI does not wrap the text for tag elements in the `PatientCard` inside the `PatientListPanel` and inside
+   the `Patient View Panel` (e.g., `Allergies`, `Medicines`). Furthermore, there is no other way to view tags in a way that would display their full
+   content. We did not anticipate tags to have many characters, so we overlooked this in our implementation.
+   Therefore, we plan to have a way to view the full tag, whether through text wrapping or inside the `PatientViewPanel`, and
+   tweak the UI to be more user-friendly and wrap other overflowing tag elements.
+
+
+7. **Make certain fields in the `add` command optional:**
+   We recognised that our target user may want to quickly add a patient to their record and leave out the additional details
+   for a later time. While most fields pertaining to medical information are already optional for this command, such as
+   `ar\`, `sr\`, and `pmh\`, we are planning to make other less important fields optional too. Which fields specifically
+   to make optional is still up for debate, as there are values and valid arguments from both sides. Our planned decision
+   for now is to make all fields other than `Name`, `Identity Number`, `Phone Number`, and `Emergency Contact` optional.
+
+
+8. **More specific error message for `add` command:**
+   In the current implementation, the error message displayed when the `add` command is executed with missing non-optional
+   fields or with a prefix but no value is "Invalid Command Format!". We plan to make this error message more descriptive
+   and helpful to the user mentioning the cause of the error and why the command is invalid.
+
+9. **More specific error message for `unschedule` and `forget` command**:
+   Currently, the error message when executing the `unschedule` and `forget` command when their respective appointments 
+   list are empty is `The appointment index provided is invalid. Please refer to the past appointments list.` We believe
+   that this error message can be improved to inform the user that the list is empty and there are no appointments to delete.
+
+10. **Better UI for showing appointments in view panel**:
+   The current UI does not nicely show a person's appointments. Moreover, if the appointment notes are too long the 
+   text may overflow. Therefore, we plan to improve the UI of showing appointments inside the person view panel 
+   to show the full appointment card together with time and notes.
+
 
 ---
 
@@ -333,7 +395,7 @@ unrecognised parameter(s): a\, b\ `
 
 ***General Characteristics***:
 
-* independent home-care doctor often making home visits
+* independent home-care doctor, often making home visits
 * has a need to manage a significant number of patients with diverse conditions
 * works with limited resources (e.g., no receptionist, no nurse), self-services features are a must
 
@@ -351,7 +413,7 @@ unrecognised parameter(s): a\, b\ `
 
 **Value proposition**:
 
-Helps independent doctors manager their patients and schedule more efficiently using a keyboard-focused UI.
+Helps independent doctors manage their patients and schedule more efficiently using a keyboard-focused UI.
 It is optimised for more tech-savvy doctors who prefer using a CLI.
 Enables quick retrieval of patient’s records, especially useful when they are always on the move.
 
@@ -360,7 +422,7 @@ Enables quick retrieval of patient’s records, especially useful when they are 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority   | As a …​              | I want to …​                                                 | So that I can…​                                                      |
+| Priority   | As a...              | I want to...                                                 | So that I can...                                                     |
 |------------|----------------------|--------------------------------------------------------------|----------------------------------------------------------------------|
 | `* * *`    | New User             | view user guide                                              | learn how to use the product whenever I need to                      |
 | `* * *`    | Doctor               | add a patient's name                                         | identify the patient correctly                                       |
