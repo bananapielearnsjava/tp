@@ -281,7 +281,7 @@ Format: `exit`
 
 ### Adding a patient: `add`
 
-Adds a patient to the address book.
+Adds a patient to the address book. This command will also show the details of the added person in the Patient View Panel.
 
 Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY_CONTACT dob\DATE_OF_BIRTH b\BLOOD_TYPE 
 [ar\ALCOHOLIC_RECORD] g\GENDER [sr\SMOKING_RECORD] [pmh\PAST_MEDICAL_HISTORY] [t\TAG]... [al\ALLERGY]... [m\MEDICINE]...`
@@ -343,7 +343,7 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 
 ### Editing a patient: `edit`
 
-Edits an existing patient in the address book.
+Edits an existing patient in the address book. This command will also show the edited details of the patient in the Patient View Panel.
 
 Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDRESS]
  [ec\EMERGENCY_CONTACT] [dob\DATE_OF_BIRTH] [b\BLOOD_TYPE] [ar\ALCOHOLIC_RECORD] [g\GENDER] [sr\SMOKING_RECORD] 
@@ -413,7 +413,7 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 
 ### Deleting a patient: `delete`
 
-Removes the specified patient from the patient list.
+Removes the specified patient from the patient list. This command will also show the details of the deleted person in the Patient View Panel.
 
 Format: `delete INDEX`
 * Deletes the patient at the specified `INDEX`.
@@ -519,7 +519,8 @@ e.g. `find John Alex` returns the same results as `find Alex John`<br>
 
 ### Scheduling an appointment: `schedule`
 
-Adds an appointment for a specific patient at a certain time.
+Adds an appointment for a specific patient at a certain time. This command will also show the details of the patient the 
+appointment has been scheduled for in the Patient View Panel.
 
 **Format:** `schedule INDEX adt\APPOINTMENT_DATE_TIME [note\APPOINTMENT_NOTE]`
 * Adds an appointment to the appointments list for the patient at the specified `INDEX` at the given date and time.
@@ -601,7 +602,7 @@ Deletes a past appointment from the displayed past appointments list.
 
 ### Clearing all entries: `clear`
 
-Clears all entries from the app.
+Clears all entries from the app. This command also clears the Patient View Panel.
 
 Format: `clear CONFIRM`
 
