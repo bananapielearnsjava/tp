@@ -1,0 +1,31 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "identityNumber" : "AP67",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "emergencyContact": "[mother] 12345679",
+    "tags": [ "friends" ],
+    "dob": "20-05-1998",
+    "bloodType" : "O",
+    "alcoholicRecord" : "Social drinker",
+    "gender" : "F",
+    "smokingRecord" : "Non-smoker",
+    "allergies": [ "nuts" ],
+    "pastMedicalHistory": "Diabetes",
+    "medicines" : ["antidepressants"]
+  } ],
+  "appointments": [
+    {
+      "notes": "First appointment",
+      "time": "01-12-2025 09:00",
+      "patientId": "AP67"
+    },
+    {
+      "notes": "Second appointment (duplicate time)",
+      "time": "01-12-2025 09:00",
+      "patientId": "AP67"
+    }
+  ]
+}
