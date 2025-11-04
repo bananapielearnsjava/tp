@@ -14,10 +14,11 @@ Hello independent doctors, welcome to our **HealthNote User Guide**!
 
 <!-- TOC -->
 * [HealthNote User Guide](#healthnote-user-guide)
-  * [Table of Contents](#table-of-contents)
+    * [Table of Contents](#table-of-contents)
   * [Introduction](#introduction)
     * [What is HealthNote?](#what-is-healthnote)
     * [Who this guide is for](#who-this-guide-is-for)
+  * [Using this Guide](#using-this-guide)
   * [Getting Started](#getting-started)
     * [1. Java version check and installation](#1-java-version-check-and-installation)
     * [2. Downloading HealthNote](#2-downloading-healthnote)
@@ -122,10 +123,8 @@ A specific Java `17` version is required.
 5. Run the downloaded file and follow the on-screen instructions.
 6. After the installation, close and reopen your CLI, and repeat `step 2`.
 
-
 ### 2. Downloading HealthNote
 Download the latest `healthnote.jar` file from [here](https://github.com/AY2526S1-CS2103T-F11-1/tp/releases).
-
 
 ### 3. Running HealthNote
 1. Create a new folder on your computer where you want to store your patient data and move the downloaded
@@ -240,7 +239,6 @@ Format: `help`
 
 
 [Back to Table of Contents](#table-of-contents)
-<br>
 
 
 ### Changing the colour theme: `theme`
@@ -258,7 +256,7 @@ Format: `theme THEME_NAME`
 
 
 [Back to Table of Contents](#table-of-contents)
-<br>
+
 
 ### Exiting the program: `exit`
 
@@ -337,7 +335,6 @@ Format: `add n\NAME id\IDENTITY_NUMBER p\PHONE e\EMAIL addr\ADDRESS ec\EMERGENCY
 
 [Back to Table of Contents](#table-of-contents)
 
-<br>
 
 ### Editing a patient: `edit`
 
@@ -408,6 +405,7 @@ Format: `edit INDEX [n\NAME] [id\IDENTITY_NUMBER] [p\PHONE] [e\EMAIL] [addr\ADDR
 
 
 [Back to Table of Contents](#table-of-contents)
+
 
 ### Deleting a patient: `delete`
 
@@ -574,6 +572,10 @@ Deletes an upcoming appointment from the displayed upcoming appointments list.
 | Unknown command.                                                        | The `unschedule` command may be misspelled or not entirely in lowercase.                     | Ensure that you use `unschedule` exactly in lowercase.                                                |
 | The appointment index provided is invalid.                              | You have entered an invalid index.                                                           | Ensure that the `INDEX` provided is a valid index in the shown list.                                  |
 
+
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Delete past appointment: `forget`
 
 Deletes a past appointment from the displayed past appointments list.
@@ -594,6 +596,7 @@ Deletes a past appointment from the displayed past appointments list.
 
 
 [Back to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -661,7 +664,6 @@ Furthermore, certain edits can cause the HealthNote application to behave in une
 **A**: Running multiple instances of the app is not supported. Doing so may cause data conflicts. Use only one window at a time.
 
 
-
 [Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -726,6 +728,7 @@ Summary of all the commands.
 | **Exit**                      | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 [Back to Table of Contents](#table-of-contents)
+
 
 ### Input Constraints Table
 
