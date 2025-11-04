@@ -13,7 +13,17 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is heavily adapted from the **AddressBook-Level3 (AB3)** project, which was created by the
+[SE-EDU initiative](https://se-education.org/) as a teaching resource for the CS2103T module at the National University of Singapore.
+
+* We have reused and adapted its core architecture (Model-View-Controller, Logic, Storage), UI framework, and the structure of this Developer Guide.
+* All diagrams in this guide are generated using [PlantUML](https://plantuml.com/).
+
+This project also makes use of the following third-party libraries:
+
+* [JavaFX](https://openjfx.io/): For the Graphical User Interface (GUI).
+* [Jackson](https://github.com/FasterXML/jackson): For serializing and deserializing data to and from JSON format.
+* [JUnit5](https://junit.org/junit5/): For unit testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -307,12 +317,14 @@ Team Size: 5
    When the user sets a new theme, this data will be updated.
 
 
-2. **More specific error message for `schedule` command**:
-   The current error message when the `schedule` command is executed with missing or invalid parameters is
-   `Invalid Command Format!` and it is too general. We plan to make the error message mention the reason for failure.
-   These reasons for failure include missing parameters, or invalid parameters provided.
-   For example: `Command could not be executed due to missing parameter: adt\` or `Command could not be executed due to
-unrecognised parameter(s): a\, b\ `
+2. **More fit error message for `schedule` command**:
+   The current error message when the `schedule` command is executed with an index but missing or invalid prefixes
+   is `You must provide an index and it has to be a non-zero unsigned integer.` This error message occurs because the
+   parser parses the invalid prefix together with the index and throws an exception as it sees it as not valid. Therefore,
+   we plan to make the error messages for this command more specific and accurate, by mentioning the reason for
+   failure. These reasons include, but are not limited to, missing non-optional parameters, and invalid parameters
+   provided. An example of such an error message is `Command could not be executed due to missing parameter:
+   adt\` or `Command could not be executed due to unrecognised parameter(s): a\, b\ `
 
 
 3. **Warn Overlapping Appointments:**
@@ -322,6 +334,50 @@ unrecognised parameter(s): a\, b\ `
    happening as it could be the intended action of the user. However, there is also a possibility that the user had
    overlooked their schedule and did not intend to add two different appointments with the same time. Therefore, we plan
    to add a message to notify the user if this occurs.
+
+
+4. **Live updates for appointment lists:**
+   In the current implementation, the appointment list does not update automatically when the time of an upcoming
+   appointment has passed while the application is still open. The temporary solution to this is to exit and reopen the
+   application again. However, this may be a annoying to users if they have to do it frequently. Therefore, we plan to
+   make the appointment list time-sensitive and update live according to the local date and time.
+
+
+5. **Add Name on `Appointment` Cards in the appointments list**:
+   Currently, the `Appointment` cards inside the appointments list only show the associated patient's ID and appointment
+   notes. We figured that it would be much more useful if these appointment cards could also show the patient's names too.
+   Therefore, we plan to patient names to the `Appointment` UI element.
+
+
+6. **Wrap tag text:**
+   Currently, the UI does not wrap the text for tag elements in the `PatientCard` inside the `PatientListPanel` and inside
+   the `Pateint View Panel` (e.g., `Allergies`, `Medicines`). Furthermore, there is no other way to view tags in a way that would display their full
+   content. We did not anticipate tags to have many characters, so we overlooked this in our implementation.
+   Therefore, we plan to have a way to view the full tag, whether through text wrapping or inside the `PatientViewPanel`, and
+   tweak the UI to be more user-friendly and wrap other overflowing tag elements.
+
+
+7. **Make certain fields in the `add` command optional:**
+   We recognised that our target user may want to quickly add a patient to their record and leave out the additional details
+   for a later time. While most fields pertaining to medical information are already optional for this command, such as
+   `ar\`, `sr\`, and `pmh\`, we are planning to make other less important fields optional too. Which fields specifically
+   to make optional is still up for debate, as there are values and valid arguments from both sides. Our planned decision
+   for now is to make all fields other than `Name`, `Identity Number`, `Phone Number`, and `Emergency Contact` optional.
+
+
+8. **More specific error message for `add` command:**
+   In the current implementation, the error message displayed when the `add` command is executed with missing non-optional
+   fields or with a prefix but no value is "Invalid Command Format!". We plan to make this error message more descriptive
+   and helpful to the user mentioning the cause of the error and why the command is invalid.
+
+9. **More specific error message for `unschedule` and `forget` command**:
+   Currently, the error message when executing the `unschedule` and `forget` command when their respective appointments 
+   list are empty is `The appointment index provided is invalid. Please refer to the past appointments list.` We believe
+   that this error message can be improved to inform the user that the list is empty and there are no appointments to delete.
+
+10. **Better UI for showing appointments in view panel**:
+   
+
 
 ---
 
