@@ -124,7 +124,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` and `Appointment` objects (which are contained in a `UniquePersonList` object and an `UniqueAppointmentList` object).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* each `Person` and `Appointment` store a common reference of `IdentityNumber`
+* each `Person` and their `Appointment`s store a common reference of `IdentityNumber`
 
 The object diagram below illustrates the important parts of how `ModelManager` is structured and how `UI` interacts with it.
 
@@ -135,7 +135,7 @@ The `ModelManager`,
 * stores a list of `Person` objects called `FilteredPersonList`. This is the list that is displayed in the `PersonListPanel` in `UI`
 * stores 2 lists of `Appointments` objects sorted by time, one which is `SortedAllUpcomingAppointments` and another `SortedAllPastAppointments`. These are the lists displayed by `AppointmentListPanel` in `UI`
 * stores a `Person` object called `ViewedPerson` which is the person currently being viewed in the `PersonViewPanel` in `UI`
-* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and `SortedViewPersonPastAppointments`
+* stores another 2 lists of `Appointments` objects filtered to current `ViewedPerson` object, one is `SortedViewedPersonUpcomingAppointments` and the other is `SortedViewPersonPastAppointments`
 * exposes the above components to outsiders as unmodifiable `ObservableList`s and `ObservableValue` that can be 'observed'. The UI components are bound to them and automatically update when the data changes.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -150,6 +150,10 @@ The `ModelManager`,
 **Note:** The above diagrams are simplified to show the most important components and their main associations. Below is a detailed class diagram of Person and Appointment.
 
 <puml src="diagrams/PersonAndAppointmentClassDiagram.puml" width="1000" />
+
+</box>
+
+<box type="info" seamless>
 
 **Note:** An alternative (arguably, a more OOP) model is given below. Where `ViewedPerson` stores a reference to the currently viewed `Person` and all their `Appointments` in the necessary order.<br>
 
